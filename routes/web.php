@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return 2;
 });
+Route::get('/qq', function () {
+    return 333;
+});
