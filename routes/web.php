@@ -12,10 +12,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Main'], function (){
+   Route::get('/',[\App\Http\Controllers\Main\IndexController::class,'index']);
 });
+
+
+Route::group(['namespace'=>'Admin','prefix'=>'admin'],function (){
+    Route::group(['namespace' => 'Main'], function (){
+        Route::get('/',[\App\Http\Controllers\Admin\Main\IndexController::class,'index']);
+    });
+});
+
+
 
 Auth::routes();
 
