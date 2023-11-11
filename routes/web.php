@@ -13,13 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['namespace' => 'Main'], function (){
-   Route::get('/',[\App\Http\Controllers\Main\IndexController::class,'index']);
+   Route::get('/',[\App\Http\Controllers\MainController::class,'index']);
 });
 
 
 Route::group(['namespace'=>'Admin','prefix'=>'admin'],function (){
     Route::group(['namespace' => 'Main'], function (){
         Route::get('/',[\App\Http\Controllers\Admin\Main\IndexController::class,'index']);
+    });
+
+    Route::group(['namespace'=>'Category','prefix'=>'categories'], function (){
+       Route::get('/',[\App\Http\Controllers\Admin\Category\CategoryController::class,'index'])->name('admin.category.index');
+       Route::get('/create',[\App\Http\Controllers\Admin\Category\CategoryController::class,'create'])->name('admin.category.create');
+       Route::post('/',[\App\Http\Controllers\Admin\Category\CategoryController::class,'store'])->name('admin.category.store');
+
     });
 });
 
