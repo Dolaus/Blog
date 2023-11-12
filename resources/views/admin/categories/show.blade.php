@@ -27,41 +27,25 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-1">
-                    <a href="{{route('admin.category.create')}}" class="btn btn-primary">Добавити</a>
-                </div>
+
                 <div class="col-12">
 
                     <div class="card">
 
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Назва</th>
-                                    <th colspan="3">Дії</th>
-                                </tr>
-                                </thead>
                                 <tbody>
-                                @foreach($categories as $category)
                                     <tr>
+                                        <td>ID</td>
                                         <td>{{$category->id}}</td>
-                                        <td>{{$category->title}}</td>
-                                        <td><a href="{{route('admin.category.show', $category->id)}}"><i class="far fa-eye"></i></a></td>
-                                        <td><a href="{{route('admin.category.edit', $category->id)}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                        <td>
-                                            <form action="{{route('admin.category.delete',$category->id)}}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="submit" class="bg-transparent border-0">
-                                                    <i class="fas fa-trash text-danger"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
 
+                                    </tr>
+
+                                    <tr>
+                                        <td>Назва</td>
+                                        <td>{{$category->title}}</td>
+
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
