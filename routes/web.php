@@ -44,6 +44,18 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin'],function (){
         Route::put('/{tag}',[\App\Http\Controllers\Admin\Tag\TagController::class,'update'])->name('admin.tag.update');
         Route::delete('/{tag}',[\App\Http\Controllers\Admin\Tag\TagController::class,'delete'])->name('admin.tag.delete');
     });
+
+
+
+    Route::group(['prefix' => 'post'], function (){
+        Route::get('/',[\App\Http\Controllers\Admin\Post\PostController::class,'index'])->name('admin.post.index');
+        Route::get('/create',[\App\Http\Controllers\Admin\Post\PostController::class,'create'])->name('admin.post.create');
+        Route::post('/',[\App\Http\Controllers\Admin\Post\PostController::class,'store'])->name('admin.post.store');
+        Route::get('/{post}',[\App\Http\Controllers\Admin\Post\PostController::class,'show'])->name('admin.post.show');
+        Route::get('/{post}/edit',[\App\Http\Controllers\Admin\Post\PostController::class,'edit'])->name('admin.post.edit');
+        Route::put('/{post}',[\App\Http\Controllers\Admin\Post\PostController::class,'update'])->name('admin.post.update');
+        Route::delete('/{post}',[\App\Http\Controllers\Admin\Post\PostController::class,'delete'])->name('admin.post.delete');
+    });
 });
 
 
