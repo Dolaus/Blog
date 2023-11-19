@@ -23,7 +23,12 @@ class CreateRequest extends FormRequest
     {
         return [
             'title'=>'required|string',
-            'content'=>'required|string'
+            'content'=>'required|string',
+            'main_image'=>'required|file',
+            'preview_image'=>'required|file',
+            'category_id'=>'required|exists:categories,id',
+            'tag_ids'=>'nullable|array',
+            'tag_ids.*'=>'exists:tags,id',
         ];
     }
 }

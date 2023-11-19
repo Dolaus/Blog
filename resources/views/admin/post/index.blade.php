@@ -28,7 +28,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-1">
-                    <a href="{{route('admin.tag.create')}}" class="btn btn-primary">Добавити</a>
+                    <a href="{{route('admin.post.create')}}" class="btn btn-primary">Добавити</a>
                 </div>
                 <div class="col-12">
 
@@ -44,14 +44,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tags as $tag)
+                                @foreach($posts as $post)
                                     <tr>
-                                        <td>{{$tag->id}}</td>
-                                        <td>{{$tag->title}}</td>
-                                        <td><a href="{{route('admin.tag.show', $tag->id)}}"><i class="far fa-eye"></i></a></td>
-                                        <td><a href="{{route('admin.tag.edit', $tag->id)}}"><i class="fas fa-pencil-alt"></i></a></td>
+                                        <td>{{$post->id}}</td>
+                                        <td>{{$post->title}}</td>
+                                        <td><a href="{{route('admin.post.show', $post->id)}}"><i class="far fa-eye"></i></a></td>
+                                        <td><a href="{{route('admin.post.edit', $post->id)}}"><i class="fas fa-pencil-alt"></i></a></td>
                                         <td>
-                                            <form action="{{route('admin.tag.delete',$tag->id)}}" method="POST">
+                                            <form action="{{route('admin.post.delete',$post->id)}}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="bg-transparent border-0">
