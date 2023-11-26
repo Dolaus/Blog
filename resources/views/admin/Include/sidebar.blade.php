@@ -38,6 +38,16 @@
                 </a>
             </li>
 
+
+            <li class="nav-item">
+                <a href="{{route('admin.user.index')}}" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                        Користувачі
+                    </p>
+                </a>
+            </li>
+
         </ul>
 
 

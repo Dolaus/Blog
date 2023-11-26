@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Post;
+namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,14 +23,10 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|string',
-            'content'=>'required|string',
-            'main_image'=>'required|file',
-            'preview_image'=>'required|file',
-            'category_id'=>'required|exists:categories,id',
-            'tag_ids'=>'nullable|array',
-            'tag_ids.*'=>'exists:tags,id',
-        ];
+            'name'=>'required|string',
+            'email'=>'required|string|email|unique:users',
+            'role'=>''
+            ];
     }
 
     protected function failedValidation(Validator $validator)
@@ -42,8 +38,7 @@ class CreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required'=>'Це поле повинно бути заповнене',
-            'main_image.file'=>'Завантажений файл має бути файлом',
+
         ];
     }
 }
