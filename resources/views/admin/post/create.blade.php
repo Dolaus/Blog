@@ -97,8 +97,12 @@
                                 <select class="select2" name="tag_ids[]" multiple="multiple" data-placeholder="Вибрати теги"
                                         style="width: 100%;">
                                     @foreach($tags as $tag)
-                                        <option value="{{$tag->id}}">{{$tag->title}}</option>
+                                        <option {{is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected' : ''}} value="{{ $tag->id }}">
+                                            {{ $tag->title }}
+                                        </option>
                                     @endforeach
+
+
                                 </select>
                                 @error('tag_ids')
                                 <div class="text-danger">{{@$message}}</div>

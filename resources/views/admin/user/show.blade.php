@@ -37,13 +37,18 @@
                                 <tbody>
                                     <tr>
                                         <td>ID</td>
-                                        <td>{{$post->id}}</td>
+                                        <td>{{$user->id}}</td>
 
                                     </tr>
 
                                     <tr>
-                                        <td>Назва</td>
-                                        <td>{{$post->title}}</td>
+                                        <td>Ім'я</td>
+                                        <td>{{$user->name}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>{{$user->email}}</td>
 
                                     </tr>
                                 </tbody>

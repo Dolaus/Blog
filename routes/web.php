@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['namespace' => 'Main'], function (){
-   Route::get('/',[\App\Http\Controllers\MainController::class,'index']);
+   Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('main');
 });
 
 
-Route::group(['namespace'=>'Admin','prefix'=>'admin'],function (){
+Route::group(['middleware'=>['auth','admin'],'namespace'=>'Admin','prefix'=>'admin'],function (){
     Route::group(['namespace' => 'Main'], function (){
         Route::get('/',[\App\Http\Controllers\Admin\Main\IndexController::class,'index']);
     });
@@ -56,6 +57,18 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin'],function (){
         Route::put('/{post}',[\App\Http\Controllers\Admin\Post\PostController::class,'update'])->name('admin.post.update');
         Route::delete('/{post}',[\App\Http\Controllers\Admin\Post\PostController::class,'delete'])->name('admin.post.delete');
     });
+
+
+
+    Route::group(['prefix' => 'user'], function (){
+        Route::get('/',[\App\Http\Controllers\Admin\User\UserController::class,'index'])->name('admin.user.index');
+        Route::get('/create',[\App\Http\Controllers\Admin\User\UserController::class,'create'])->name('admin.user.create');
+        Route::post('/',[\App\Http\Controllers\Admin\User\UserController::class,'store'])->name('admin.user.store');
+        Route::get('/{user}',[\App\Http\Controllers\Admin\User\UserController::class,'show'])->name('admin.user.show');
+        Route::get('/{user}/edit',[\App\Http\Controllers\Admin\User\UserController::class,'edit'])->name('admin.user.edit');
+        Route::put('/{user}',[\App\Http\Controllers\Admin\User\UserController::class,'update'])->name('admin.user.update');
+        Route::delete('/{user}',[\App\Http\Controllers\Admin\User\UserController::class,'delete'])->name('admin.user.delete');
+    });
 });
 
 
@@ -63,3 +76,4 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin'],function (){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
